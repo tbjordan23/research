@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical EdX</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #2c2c8f;
+      --purple-light: #6c63ff;
+      --purple-bg: #f0efff;
+      --red: #e53030;
+      --coral: #e85d5d;
+      --text: #1a1a4e;
+      --gray: #555;
+      --light-gray: #f7f7f7;
+      --border: #e2e2e2;
+    }
+
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--text); }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 60px; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: #fff; z-index: 100;
+    }
+
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 20px; color: var(--purple); }
+    .logo svg { width: 32px; height: 32px; }
+
+    .nav-links { display: flex; gap: 32px; font-size: 15px; color: var(--text); }
+    .nav-links a:hover { color: var(--purple-light); }
+
+    /* HERO */
+    .hero {
+      display: flex; align-items: center; gap: 40px;
+      padding: 70px 60px 50px;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    .hero-left { flex: 1; }
+    .hero-left h1 { font-size: 42px; font-weight: 800; color: var(--purple); line-height: 1.2; margin-bottom: 20px; }
+    .hero-left p { font-size: 17px; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+    .hero-divider { width: 50px; height: 3px; background: var(--red); margin-bottom: 16px; }
+    .hero-sub { font-size: 14px; color: var(--gray); margin-bottom: 28px; }
+
+    .hero-buttons { display: flex; gap: 14px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--purple); color: #fff;
+      padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 15px;
+      cursor: pointer; border: none; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #1e1e7a; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid var(--border); color: var(--text);
+      padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 15px;
+      background: #fff; cursor: pointer; transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--purple); color: var(--purple); }
+
+    .hero-right { flex: 1; position: relative; }
+    .hero-img {
+      width: 100%; border-radius: 16px; object-fit: cover;
+      height: 280px; background: linear-gradient(135deg, #b8d4f8 0%, #9ec5f5 50%, #c4daf9 100%);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+
+    .hero-badge {
+      position: absolute; bottom: 20px; right: 10px;
+      background: #fff; border-radius: 12px; padding: 14px 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12); min-width: 170px; font-size: 12px;
+    }
+    .hero-badge-label {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--purple); color: #fff; border-radius: 6px;
+      padding: 4px 8px; font-size: 11px; font-weight: 600; margin-bottom: 8px;
+    }
+    .hero-badge-promo { font-size: 11px; color: var(--gray); margin-bottom: 4px; }
+    .hero-badge-price { font-size: 16px; font-weight: 700; color: var(--coral); margin-bottom: 4px; }
+    .hero-badge-guarantee { font-size: 11px; color: var(--gray); margin-bottom: 8px; display: flex; align-items: center; gap: 4px; }
+    .hero-badge-link { font-size: 11px; color: var(--purple); font-weight: 600; cursor: pointer; }
+    .hero-badge-link:hover { text-decoration: underline; }
+
+    /* FEATURE CARDS */
+    .features {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; padding: 0 60px 60px; max-width: 1100px; margin: 0 auto;
+    }
+
+    .feature-card {
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; background: #fff;
+    }
+
+    .feature-icon { margin-bottom: 10px; }
+    .feature-title { font-size: 15px; font-weight: 700; color: var(--coral); margin-bottom: 8px; }
+    .feature-desc { font-size: 14px; color: var(--gray); line-height: 1.5; }
+
+    /* CURRICULUM */
+    .curriculum-section { background: #fafafa; padding: 70px 60px; }
+    .section-title { text-align: center; font-size: 32px; font-weight: 800; color: var(--purple); margin-bottom: 12px; }
+    .section-divider { width: 50px; height: 3px; background: var(--red); margin: 0 auto 20px; }
+    .section-desc { text-align: center; color: var(--gray); font-size: 15px; line-height: 1.7; max-width: 600px; margin: 0 auto 40px; }
+
+    .modules {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px; max-width: 1100px; margin: 0 auto 36px;
+    }
+
+    .module-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; display: flex; flex-direction: column;
+    }
+
+    .module-icon {
+      width: 48px; height: 48px; border-radius: 12px; background: var(--purple-bg);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .module-title {
+      font-size: 15px; font-weight: 700; color: var(--coral);
+      text-align: center; margin-bottom: 8px; line-height: 1.4;
+    }
+
+    .module-divider { width: 36px; height: 3px; background: var(--red); margin: 0 auto 14px; }
+    .module-desc { font-size: 13px; color: var(--gray); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+
+    .module-old-price { text-align: center; text-decoration: line-through; color: var(--gray); font-size: 13px; }
+    .module-price { text-align: center; font-size: 26px; font-weight: 800; color: var(--purple); }
+    .module-discount { text-align: center; font-size: 11px; font-weight: 700; color: var(--coral); margin-bottom: 16px; }
+
+    .module-buttons { display: flex; gap: 8px; }
+    .btn-enroll {
+      background: var(--purple); color: #fff;
+      padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      border: none; cursor: pointer; flex: 1; text-align: center; transition: background 0.2s;
+    }
+    .btn-enroll:hover { background: #1e1e7a; }
+    .btn-learn {
+      background: #fff; color: var(--text); border: 1px solid var(--border);
+      padding: 9px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .btn-learn:hover { border-color: var(--purple); color: var(--purple); }
+
+    .bundle-pricing { text-align: center; margin-bottom: 20px; }
+    .bundle-old { text-decoration: line-through; color: var(--gray); font-size: 15px; }
+    .bundle-price { font-size: 36px; font-weight: 800; color: var(--purple); }
+    .bundle-discount { font-size: 12px; font-weight: 700; color: var(--coral); }
+
+    .btn-enroll-full {
+      display: block; width: fit-content; margin: 0 auto;
+      background: var(--coral); color: #fff;
+      padding: 14px 40px; border-radius: 8px; font-size: 16px; font-weight: 700;
+      border: none; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-enroll-full:hover { background: #c94040; }
+
+    /* ADVANTAGE */
+    .advantage-section { padding: 70px 60px; max-width: 1100px; margin: 0 auto; }
+
+    .accordion-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .accordion-header-bar {
+      padding: 16px 20px; background: #fafafa;
+      font-size: 15px; font-weight: 700; border-bottom: 1px solid var(--border);
+    }
+    .accordion-item { border-bottom: 1px solid var(--border); }
+    .accordion-item:last-child { border-bottom: none; }
+
+    .accordion-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; cursor: pointer; font-size: 15px; font-weight: 600;
+      background: #fff; transition: background 0.15s;
+    }
+    .accordion-trigger:hover { background: #fafafa; }
+    .accordion-trigger-left { display: flex; align-items: center; gap: 12px; }
+    .accordion-chevron { transition: transform 0.2s; font-size: 14px; color: var(--gray); }
+    .accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+    .accordion-content { display: none; padding: 0 20px 16px 48px; font-size: 14px; color: var(--gray); line-height: 1.6; }
+    .accordion-item.open .accordion-content { display: block; }
+
+    /* TESTIMONIALS */
+    .testimonials-section { padding: 70px 60px; background: #fafafa; }
+
+    .testimonial-carousel { position: relative; max-width: 680px; margin: 0 auto; }
+
+    .testimonial-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px;
+      padding: 40px 40px 30px; position: relative; margin: 0 60px;
+    }
+
+    .testimonial-quote-top {
+      font-size: 48px; color: #e0dff5; font-family: Georgia, serif;
+      line-height: 1; position: absolute; top: 20px; left: 30px;
+    }
+
+    .testimonial-text { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+
+    .testimonial-stars { color: #e53030; font-size: 18px; margin-bottom: 14px; }
+
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--purple); display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 16px;
+    }
+    .author-name { font-size: 14px; font-weight: 700; color: var(--coral); }
+    .author-role { font-size: 13px; color: var(--gray); }
+
+    .testimonial-quote-bottom {
+      font-size: 48px; color: #e0dff5; font-family: Georgia, serif;
+      line-height: 1; position: absolute; bottom: 20px; right: 30px;
+    }
+
+    .carousel-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
+      background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: var(--gray); z-index: 10; transition: all 0.2s;
+    }
+    .carousel-arrow:hover { border-color: var(--purple); color: var(--purple); }
+    .carousel-prev { left: 0; }
+    .carousel-next { right: 0; }
+
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+    .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.2s; }
+    .carousel-dot.active { background: var(--red); width: 24px; border-radius: 5px; }
+
+    /* FAQ */
+    .faq-section { padding: 70px 60px; max-width: 900px; margin: 0 auto; }
+    .faq-section .section-title { font-size: 28px; }
+
+    .faq-category { margin-bottom: 28px; }
+    .faq-category-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700; color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    .faq-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+    .faq-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; cursor: pointer; font-size: 14px; font-weight: 600;
+      background: #fff; color: var(--purple); transition: background 0.15s;
+    }
+    .faq-trigger:hover { background: #fafafa; }
+    .faq-trigger-left { display: flex; align-items: center; gap: 10px; }
+    .faq-chevron { transition: transform 0.2s; color: var(--gray); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-content { display: none; padding: 0 16px 14px 36px; font-size: 13px; color: var(--gray); line-height: 1.6; }
+    .faq-item.open .faq-content { display: block; }
+
+    .faq-contact-box {
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 24px; display: flex; align-items: center; justify-content: space-between;
+      margin-top: 20px;
+    }
+    .faq-contact-title { font-size: 16px; font-weight: 700; color: var(--purple); margin-bottom: 4px; }
+    .faq-contact-desc { font-size: 13px; color: var(--gray); }
+    .btn-contact {
+      background: var(--coral); color: #fff;
+      padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer; white-space: nowrap; transition: background 0.2s;
+    }
+    .btn-contact:hover { background: #c94040; }
+
+    /* FOOTER */
+    footer { background: #fff; border-top: 1px solid var(--border); padding: 50px 60px 20px; }
+    .footer-top { display: flex; gap: 80px; margin-bottom: 40px; }
+    .footer-brand { max-width: 260px; }
+    .footer-brand .logo { margin-bottom: 12px; }
+    .footer-tagline { font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 12px; }
+    .social-icon {
+      width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--gray); cursor: pointer; transition: all 0.2s;
+    }
+    .social-icon:hover { border-color: var(--purple); color: var(--purple); }
+
+    .footer-links h4 { font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links li a { font-size: 14px; color: var(--gray); }
+    .footer-links li a:hover { color: var(--purple); }
+
+    .footer-bottom {
+      text-align: center; font-size: 13px; color: var(--gray);
+      border-top: 1px solid var(--border); padding-top: 20px;
+    }
+
+    /* SMOOTH SCROLL */
+    html { scroll-behavior: smooth; }
+
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      .hero { flex-direction: column; padding: 40px 20px 30px; }
+      .features { grid-template-columns: 1fr; padding: 0 20px 40px; }
+      .curriculum-section { padding: 50px 20px; }
+      .modules { grid-template-columns: repeat(2, 1fr); }
+      .advantage-section { padding: 50px 20px; }
+      .testimonials-section { padding: 50px 20px; }
+      .faq-section { padding: 50px 20px; }
+      footer { padding: 40px 20px 20px; }
+      .footer-top { flex-direction: column; gap: 30px; }
+    }
+
+    @media (max-width: 600px) {
+      .modules { grid-template-columns: 1fr; }
+      .hero-left h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2L6 8v8l10 6 10-6V8L16 2z" fill="#6c63ff" opacity="0.3"/>
+      <path d="M16 2L6 8l10 6 10-6L16 2z" fill="#e53030" opacity="0.8"/>
+      <path d="M6 8v8l10 6V14L6 8z" fill="#6c63ff"/>
+      <path d="M26 8v8l-10 6V14l10-6z" fill="#2c2c8f"/>
+    </svg>
+    Clinical EdX
+  </div>
+  <div class="nav-links">
+    <a href="#curriculum">Curriculum</a>
+    <a href="#advantage">Our Advantage</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="padding: 0 60px; max-width: 1220px; margin: 0 auto;">
+  <div class="hero">
+    <div class="hero-left">
+      <h1>Learn. Lead. Excel in Clinical Research</h1>
+      <p>Launch your career in clinical research with our expert-designed curriculum. Gain practical skills, global standards knowledge, and the confidence to thrive in a fast-growing industry.</p>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">Industry leading clinical research curriculum for health care professionals.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary">Get Started <span>&#8594;</span></button>
+        <button class="btn-outline"><span>&#9654;</span> Learn More</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img">
+        <!-- Clinical research lab image placeholder -->
+        <svg width="100%" height="280" viewBox="0 0 580 280" xmlns="http://www.w3.org/2000/svg">
+          <rect width="580" height="280" fill="#c8dff5"/>
+          <!-- Lab shelves background -->
+          <rect x="0" y="0" width="580" height="280" fill="url(#labGrad)"/>
+          <defs>
+            <linearGradient id="labGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#b8d4f0"/>
+              <stop offset="100%" stop-color="#9ec3ee"/>
+            </linearGradient>
+          </defs>
+          <!-- Shelves -->
+          <rect x="330" y="10" width="240" height="6" rx="2" fill="#8ab0d4"/>
+          <rect x="330" y="60" width="240" height="6" rx="2" fill="#8ab0d4"/>
+          <rect x="330" y="110" width="240" height="6" rx="2" fill="#8ab0d4"/>
+          <!-- Lab equipment on shelves -->
+          <rect x="340" y="30" width="18" height="28" rx="3" fill="#e8f0fa"/>
+          <rect x="365" y="25" width="14" height="33" rx="3" fill="#dce8f8"/>
+          <rect x="385" y="35" width="20" height="23" rx="3" fill="#e8f0fa"/>
+          <rect x="340" y="78" width="22" height="30" rx="3" fill="#dce8f8"/>
+          <rect x="368" y="72" width="16" height="36" rx="3" fill="#e0ecf9"/>
+          <rect x="390" y="80" width="24" height="28" rx="3" fill="#dce8f8"/>
+          <!-- People silhouettes -->
+          <ellipse cx="180" cy="80" rx="30" ry="30" fill="#6a9cc5"/>
+          <rect x="155" y="110" width="50" height="90" rx="10" fill="#5a8ab5"/>
+          <ellipse cx="280" cy="75" rx="28" ry="28" fill="#4a7aaa"/>
+          <rect x="255" y="103" width="50" height="90" rx="10" fill="#3a6a9a"/>
+          <ellipse cx="380" cy="85" rx="26" ry="26" fill="#7aaccc"/>
+          <rect x="358" y="111" width="44" height="80" rx="10" fill="#6a9cbc"/>
+          <!-- Lab coats highlight -->
+          <rect x="158" y="115" width="50" height="5" rx="2" fill="#fff" opacity="0.3"/>
+          <rect x="258" y="108" width="50" height="5" rx="2" fill="#fff" opacity="0.3"/>
+          <!-- Microscope -->
+          <rect x="80" y="160" width="20" height="60" rx="4" fill="#5a8ab5"/>
+          <ellipse cx="90" cy="158" rx="18" ry="8" fill="#4a7aaa"/>
+          <rect x="86" y="140" width="8" height="20" rx="3" fill="#3a6a9a"/>
+          <!-- Monitor -->
+          <rect x="470" y="140" width="90" height="60" rx="6" fill="#3a5f8a"/>
+          <rect x="475" y="145" width="80" height="50" rx="4" fill="#7ab0d8"/>
+          <rect x="500" y="200" width="30" height="8" rx="2" fill="#3a5f8a"/>
+        </svg>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-label">
+          <span>&#128172;</span> Clinical Research Courses
+        </div>
+        <div class="hero-badge-promo">New Launch Promotion!</div>
+        <div class="hero-badge-price">$325/per course</div>
+        <div class="hero-badge-guarantee">&#9200; Guaranteed results</div>
+        <div class="hero-badge-link" onclick="document.getElementById('curriculum').scrollIntoView({behavior:'smooth'})">View Curriculum</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div style="max-width: 1100px; margin: 0 auto;">
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="feature-title">Industry Leading Curriculum</div>
+      <div class="feature-desc">Expert-designed curriculum aligned with global clinical research standards</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </div>
+      <div class="feature-title">Career Growth</div>
+      <div class="feature-desc">Advance your career with in-demand clinical research expertise</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <div class="feature-title">Improved Patient Care</div>
+      <div class="feature-desc">Apply evidence-based research to deliver better patient outcomes</div>
+    </div>
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<section class="curriculum-section" id="curriculum">
+  <h2 class="section-title">Comprehensive Clinical Research Curriculum</h2>
+  <div class="section-divider"></div>
+  <p class="section-desc">Industry leading education developed by top clinical research experts and aligned with best practices, our curriculum ensures learners gain cutting-edge knowledge and practical skills demanded by leading healthcare and research organizations worldwide.</p>
+
+  <div class="modules">
+    <!-- Module 1 -->
+    <div class="module-card">
+      <div class="module-icon" style="margin: 0 auto 16px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+      </div>
+      <div class="module-title">Module 1: Foundations of Clinical Research</div>
+      <div class="module-divider"></div>
+      <div class="module-desc">Research is not one-size-fits-all. Think of it as a continuum of inquiry—from curiosity-driven exploration to patient-centered application.</div>
+      <div class="module-old-price">$500</div>
+      <div class="module-price">$325</div>
+      <div class="module-discount">35% OFF</div>
+      <div class="module-buttons">
+        <button class="btn-enroll">Enroll Now</button>
+        <button class="btn-learn">Learn More</button>
+      </div>
+    </div>
+    <!-- Module 2 -->
+    <div class="module-card">
+      <div class="module-icon" style="margin: 0 auto 16px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2">
+          <circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/>
+        </svg>
+      </div>
+      <div class="module-title">Module 2: The Research Pathway</div>
+      <div class="module-divider"></div>
+      <div class="module-desc">The research process starts when a healthcare professional or researcher notices something unexpected, inefficient, or unexplained in clinical practice or patient outcomes.</div>
+      <div class="module-old-price">$500</div>
+      <div class="module-price">$325</div>
+      <div class="module-discount">35% OFF</div>
+      <div class="module-buttons">
+        <button class="btn-enroll">Enroll Now</button>
+        <button class="btn-learn">Learn More</button>
+      </div>
+    </div>
+    <!-- Module 3 -->
+    <div class="module-card">
+      <div class="module-icon" style="margin: 0 auto 16px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2">
+          <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+        </svg>
+      </div>
+      <div class="module-title">Module 3: Foundations of Data Handling</div>
+      <div class="module-divider"></div>
+      <div class="module-desc">Learn the essential principles and best practices for collecting, managing, and securing clinical research data, ensuring accuracy, compliance, and integrity throughout the research lifecycle.</div>
+      <div class="module-old-price">$500</div>
+      <div class="module-price">$325</div>
+      <div class="module-discount">35% OFF</div>
+      <div class="module-buttons">
+        <button class="btn-enroll">Enroll Now</button>
+        <button class="btn-learn">Learn More</button>
+      </div>
+    </div>
+    <!-- Module 4 -->
+    <div class="module-card">
+      <div class="module-icon" style="margin: 0 auto 16px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2">
+          <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+      </div>
+      <div class="module-title">Module 4: Scientific Writing Skills</div>
+      <div class="module-divider"></div>
+      <div class="module-desc">Master the art of clear, impactful scientific writing and learn to critically evaluate research for accuracy, validity, and relevance.</div>
+      <div class="module-old-price">$500</div>
+      <div class="module-price">$325</div>
+      <div class="module-discount">35% OFF</div>
+      <div class="module-buttons">
+        <button class="btn-enroll">Enroll Now</button>
+        <button class="btn-learn">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bundle-pricing">
+    <div class="bundle-old">$2,000</div>
+    <div class="bundle-price">$1,300</div>
+    <div class="bundle-discount">35% OFF</div>
+  </div>
+  <button class="btn-enroll-full">Enroll into Full Curriculum</button>
+</section>
+
+<!-- ADVANTAGE -->
+<section class="advantage-section" id="advantage">
+  <h2 class="section-title">The Clinical Edx Advantage</h2>
+  <div class="section-divider"></div>
+  <p class="section-desc" style="margin-bottom: 40px;">World-Class Clinical Research Education — Learn, Excel, Impact.</p>
+
+  <div class="accordion-box">
+    <div class="accordion-header-bar">Course Features</div>
+
+    <div class="accordion-item" id="acc-ai">
+      <div class="accordion-trigger" onclick="toggleAccordion('acc-ai')">
+        <div class="accordion-trigger-left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+            <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/>
+          </svg>
+          <span>AI Assistant</span>
+        </div>
+        <span class="accordion-chevron">&#8964;</span>
+      </div>
+      <div class="accordion-content">Our AI-powered assistant provides personalized learning support, answers questions instantly, and guides you through complex clinical research concepts at your own pace, 24/7.</div>
+    </div>
+
+    <div class="accordion-item" id="acc-interactive">
+      <div class="accordion-trigger" onclick="toggleAccordion('acc-interactive')">
+        <div class="accordion-trigger-left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          <span>Interactive Activities</span>
+        </div>
+        <span class="accordion-chevron">&#8964;</span>
+      </div>
+      <div class="accordion-content">Engage with hands-on simulations, case studies, and interactive exercises that reinforce clinical research concepts through real-world application scenarios.</div>
+    </div>
+
+    <div class="accordion-item" id="acc-assess">
+      <div class="accordion-trigger" onclick="toggleAccordion('acc-assess')">
+        <div class="accordion-trigger-left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span>Assessments and Feedback</span>
+        </div>
+        <span class="accordion-chevron">&#8964;</span>
+      </div>
+      <div class="accordion-content">Regular quizzes and assessments with detailed, actionable feedback help you track your progress and identify areas for improvement throughout the course.</div>
+    </div>
+
+    <div class="accordion-item" id="acc-video">
+      <div class="accordion-trigger" onclick="toggleAccordion('acc-video')">
+        <div class="accordion-trigger-left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+            <rect x="2" y="7" width="15" height="14" rx="2"/><path d="M17 9l4-3v12l-4-3"/>
+          </svg>
+          <span>Engaging Videos</span>
+        </div>
+        <span class="accordion-chevron">&#8964;</span>
+      </div>
+      <div class="accordion-content">High-quality video lectures presented by leading clinical research experts, breaking down complex topics into digestible, visually engaging content.</div>
+    </div>
+
+    <div class="accordion-item" id="acc-mobile">
+      <div class="accordion-trigger" onclick="toggleAccordion('acc-mobile')">
+        <div class="accordion-trigger-left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/>
+          </svg>
+          <span>Mobile Ready</span>
+        </div>
+        <span class="accordion-chevron">&#8964;</span>
+      </div>
+      <div class="accordion-content">Access your courses anytime, anywhere on any device — whether on your phone, tablet, or desktop — with our fully responsive mobile-optimized platform.</div>
+    </div>
+
+    <div class="accordion-item" id="acc-discuss">
+      <div class="accordion-trigger" onclick="toggleAccordion('acc-discuss')">
+        <div class="accordion-trigger-left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <span>Discussion Groups</span>
+        </div>
+        <span class="accordion-chevron">&#8964;</span>
+      </div>
+      <div class="accordion-content">Connect with peers from around the world in moderated discussion groups, share insights, collaborate on case studies, and build a global professional network.</div>
+    </div>
+
+    <div class="accordion-item" id="acc-cert">
+      <div class="accordion-trigger" onclick="toggleAccordion('acc-cert')">
+        <div class="accordion-trigger-left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e53030" stroke-width="2">
+            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+          <span>Professional Certificate of Learning</span>
+        </div>
+        <span class="accordion-chevron">&#8964;</span>
+      </div>
+      <div class="accordion-content">Earn a recognized Professional Certificate upon completion of each module or the full curriculum, demonstrating your clinical research expertise to employers and institutions worldwide.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <h2 class="section-title">What Healthcare Professionals Say</h2>
+  <div class="section-divider"></div>
+  <p class="section-desc">Hear from healthcare professionals who have advanced their clinical research careers with our courses.</p>
+
+  <div class="testimonial-carousel">
+    <button class="carousel-arrow carousel-prev" onclick="moveCarousel(-1)">&#8249;</button>
+    <button class="carousel-arrow carousel-next" onclick="moveCarousel(1)">&#8250;</button>
+
+    <div id="testimonial-track">
+      <div class="testimonial-card">
+        <div class="testimonial-quote-top">"</div>
+        <p class="testimonial-text">As a busy healthcare professional, I needed flexible learning that fits my schedule. Clinical EdX delivered exactly that. The mobile-ready platform allowed me to study during commutes, and the practice quizzes helped reinforce my learning. The professional certification has opened new doors for my career in clinical research.</p>
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">J</div>
+          <div>
+            <div class="author-name">Dr. James K.</div>
+            <div class="author-role">Medical Officer</div>
+          </div>
+        </div>
+        <div class="testimonial-quote-bottom">"</div>
+      </div>
+    </div>
+
+    <div class="carousel-dots" id="carousel-dots">
+      <div class="carousel-dot" onclick="goToSlide(0)"></div>
+      <div class="carousel-dot active" onclick="goToSlide(1)"></div>
+      <div class="carousel-dot" onclick="goToSlide(2)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <h2 class="section-title">&#10067; Frequently Asked Questions</h2>
+  <div class="section-divider"></div>
+  <p class="section-desc">Everything you need to know about our clinical research education programs</p>
+
+  <!-- Pricing & Payment -->
+  <div class="faq-category">
+    <div class="faq-category-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2c2c8f" stroke-width="2">
+        <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+      Pricing &amp; Payment
+    </div>
+
+    <div class="faq-item open" id="faq-cost">
+      <div class="faq-trigger" onclick="toggleFaq('faq-cost')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          How much does the course cost?
+        </div>
+        <span class="faq-chevron" style="transform: rotate(180deg);">&#8964;</span>
+      </div>
+      <div class="faq-content" style="display:block;">Each individual course module is priced at $325 (reduced from $500 – that's 35% off!). If you enroll in the full curriculum bundle, you'll pay $1,300 instead of $2,000, saving 35%. This promotional pricing is available for a limited time.</div>
+    </div>
+
+    <div class="faq-item" id="faq-payment">
+      <div class="faq-trigger" onclick="toggleFaq('faq-payment')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+          What payment methods do you accept?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers. Payment plans may be available upon request.</div>
+    </div>
+
+    <div class="faq-item" id="faq-fees">
+      <div class="faq-trigger" onclick="toggleFaq('faq-fees')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>
+          </svg>
+          Are there any additional fees or hidden costs?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">No hidden fees. The price you see covers full access to all course materials, assessments, and your professional certificate. There are no recurring subscription charges.</div>
+    </div>
+  </div>
+
+  <!-- Course Access & Flexibility -->
+  <div class="faq-category">
+    <div class="faq-category-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2c2c8f" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      Course Access &amp; Flexibility
+    </div>
+
+    <div class="faq-item" id="faq-complete">
+      <div class="faq-trigger" onclick="toggleFaq('faq-complete')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          How long do I have to complete the course?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">There is no fixed deadline. You can complete the course at your own pace, fitting learning around your professional and personal schedule.</div>
+    </div>
+
+    <div class="faq-item" id="faq-access">
+      <div class="faq-trigger" onclick="toggleFaq('faq-access')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+          How long will I have access to the courses?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">Once enrolled, you receive lifetime access to all course materials, including any future updates, so you can revisit content whenever you need a refresher.</div>
+    </div>
+
+    <div class="faq-item" id="faq-mobile">
+      <div class="faq-trigger" onclick="toggleFaq('faq-mobile')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/>
+          </svg>
+          Can I access the course on my phone or tablet?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">Yes! Our platform is fully mobile-responsive, working seamlessly on smartphones, tablets, and desktop computers — allowing you to learn on the go.</div>
+    </div>
+  </div>
+
+  <!-- Course Content & Quality -->
+  <div class="faq-category">
+    <div class="faq-category-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2c2c8f" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+      Course Content &amp; Quality
+    </div>
+
+    <div class="faq-item" id="faq-author">
+      <div class="faq-trigger" onclick="toggleFaq('faq-author')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          Who is the author of these courses?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">Our courses are developed by seasoned clinical research professionals with decades of combined experience in pharmaceutical research, clinical trials, data management, and healthcare education.</div>
+    </div>
+
+    <div class="faq-item" id="faq-advantages">
+      <div class="faq-trigger" onclick="toggleFaq('faq-advantages')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          What are the advantages compared to other providers?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">Clinical EdX uniquely combines AI-assisted learning, interactive activities, expert-authored content, and an internationally recognized certificate — all at an industry-leading price point with lifetime access.</div>
+    </div>
+
+    <div class="faq-item" id="faq-certificate">
+      <div class="faq-trigger" onclick="toggleFaq('faq-certificate')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+          Will I receive a certificate upon completion?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">Yes. Upon successfully completing a module or the full curriculum, you will receive a Professional Certificate of Learning that you can share on LinkedIn and with employers.</div>
+    </div>
+  </div>
+
+  <!-- Support & Assistance -->
+  <div class="faq-category">
+    <div class="faq-category-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2c2c8f" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      Support &amp; Assistance
+    </div>
+
+    <div class="faq-item" id="faq-support">
+      <div class="faq-trigger" onclick="toggleFaq('faq-support')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17.01"/>
+          </svg>
+          How can I get support if I have questions?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">Our support team is available via email and live chat Monday through Friday. You can also leverage our AI Assistant for instant answers to course-related questions at any time.</div>
+    </div>
+
+    <div class="faq-item" id="faq-refund">
+      <div class="faq-trigger" onclick="toggleFaq('faq-refund')">
+        <div class="faq-trigger-left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.28"/>
+          </svg>
+          What is your refund policy?
+        </div>
+        <span class="faq-chevron">&#8964;</span>
+      </div>
+      <div class="faq-content">We offer a 14-day money-back guarantee. If you are unsatisfied within the first 14 days of enrollment, contact our support team for a full refund — no questions asked.</div>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="faq-contact-box" id="contact">
+    <div>
+      <div class="faq-contact-title">Still have questions?</div>
+      <div class="faq-contact-desc">Our team is ready to answer all your questions about clinical research education</div>
+    </div>
+    <button class="btn-contact">Contact Us</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom: 12px;">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+          <path d="M16 2L6 8v8l10 6 10-6V8L16 2z" fill="#6c63ff" opacity="0.3"/>
+          <path d="M16 2L6 8l10 6 10-6L16 2z" fill="#e53030" opacity="0.8"/>
+          <path d="M6 8v8l10 6V14L6 8z" fill="#6c63ff"/>
+          <path d="M26 8v8l-10 6V14l10-6z" fill="#2c2c8f"/>
+        </svg>
+        Clinical EdX
+      </div>
+      <p class="footer-tagline">Industry leading clinical research curriculum for health care professionals.</p>
+      <div class="footer-social">
+        <div class="social-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <div class="social-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </div>
+        <div class="social-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </div>
+        <div class="social-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <h4>Useful Links</h4>
+      <ul>
+        <li><a href="#curriculum">Curriculum</a></li>
+        <li><a href="#advantage">Our Advantage</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2026 Clinical EdX. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  function toggleAccordion(id) {
+    const item = document.getElementById(id);
+    item.classList.toggle('open');
+  }
+
+  function toggleFaq(id) {
+    const item = document.getElementById(id);
+    const wasOpen = item.classList.contains('open');
+    item.classList.toggle('open');
+    const chevron = item.querySelector('.faq-chevron');
+    if (item.classList.contains('open')) {
+      chevron.style.transform = 'rotate(180deg)';
+    } else {
+      chevron.style.transform = '';
+    }
+  }
+
+  // Testimonials carousel data
+  const testimonials = [
+    {
+      text: "As a busy healthcare professional, I needed flexible learning that fits my schedule. Clinical EdX delivered exactly that. The mobile-ready platform allowed me to study during commutes, and the practice quizzes helped reinforce my learning. The professional certification has opened new doors for my career in clinical research.",
+      stars: 5,
+      initial: "J",
+      name: "Dr. James K.",
+      role: "Medical Officer"
+    },
+    {
+      text: "The curriculum is incredibly comprehensive and practical. The AI assistant helped me whenever I was stuck on a concept, and the interactive case studies made everything feel real. I feel much more confident contributing to clinical research projects at my hospital.",
+      stars: 5,
+      initial: "S",
+      name: "Dr. Sarah M.",
+      role: "Clinical Research Coordinator"
+    },
+    {
+      text: "I enrolled in all four modules and completed the full curriculum. The scientific writing module alone transformed how I approach research documentation. Worth every penny — the 35% discount made it even more accessible. Highly recommend to anyone in healthcare.",
+      stars: 5,
+      initial: "R",
+      name: "Dr. Robert A.",
+      role: "Principal Investigator"
+    }
+  ];
+
+  let currentSlide = 0;
+
+  function renderTestimonial(index) {
+    const t = testimonials[index];
+    const track = document.getElementById('testimonial-track');
+    track.innerHTML = `
+      <div class="testimonial-card">
+        <div class="testimonial-quote-top">"</div>
+        <p class="testimonial-text">${t.text}</p>
+        <div class="testimonial-stars">${'&#9733;'.repeat(t.stars)}</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">${t.initial}</div>
+          <div>
+            <div class="author-name">${t.name}</div>
+            <div class="author-role">${t.role}</div>
+          </div>
+        </div>
+        <div class="testimonial-quote-bottom">"</div>
+      </div>
+    `;
+    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  function moveCarousel(dir) {
+    currentSlide = (currentSlide + dir + testimonials.length) % testimonials.length;
+    renderTestimonial(currentSlide);
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    renderTestimonial(currentSlide);
+  }
+
+  // Init testimonial
+  renderTestimonial(0);
+</script>
+</body>
+</html>
