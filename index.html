@@ -174,9 +174,9 @@
 
     .feature-card {
       background: var(--surface-2); border: 1px solid var(--border);
-      border-radius: 12px; padding: 26px; transition: border-color 0.2s;
+      border-radius: 12px; padding: 26px; transition: border-color 0.2s, transform 0.2s;
     }
-    .feature-card:hover { border-color: var(--border-hover); }
+    .feature-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
 
     .feature-icon-wrap {
       width: 40px; height: 40px; border-radius: 10px;
@@ -234,13 +234,21 @@
 
     .module-buttons { display: flex; gap: 6px; }
     .btn-enroll {
+      display: flex; align-items: center; justify-content: center;
       background: var(--accent); color: #fff;
       padding: 8px 0; border-radius: 7px; font-size: 12px; font-weight: 600;
-      border: none; cursor: pointer; flex: 1; text-align: center; transition: opacity 0.2s;
+      border: none; cursor: pointer; flex: 1; text-align: center; text-decoration: none;
+      transition: opacity 0.2s;
     }
+    .module-card:hover .btn-enroll {
+      background: #7b74ff; box-shadow: 0 4px 16px rgba(108, 99, 255, 0.45);
+      font-weight: 800; letter-spacing: 0.2px; transform: scale(1.02);
+    }
+    .btn-enroll { transition: opacity 0.2s, background 0.2s, box-shadow 0.2s, font-weight 0.1s, transform 0.15s; }
     .btn-enroll:hover { opacity: 0.85; }
     .btn-learn {
-      background: transparent; color: var(--text-muted);
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; color: var(--text-muted); text-decoration: none;
       border: 1px solid var(--border); padding: 8px 12px;
       border-radius: 7px; font-size: 12px; font-weight: 600;
       cursor: pointer; transition: all 0.15s; white-space: nowrap;
@@ -470,7 +478,7 @@
         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
       </svg>
     </button>
-    <button class="nav-cta">Get Started &#8594;</button>
+    <a href="#curriculum" class="nav-cta">Get Started &#8594;</a>
   </div>
 </nav>
 
@@ -523,8 +531,6 @@
           <!-- Label -->
           <rect x="16" y="16" width="130" height="24" rx="5" fill="#1e1e22"/>
           <text x="26" y="32" font-family="Inter, sans-serif" font-size="11" fill="#8a8a96" font-weight="600">Career Growth Rate</text>
-          <rect x="450" y="16" width="114" height="24" rx="5" fill="#6c63ff" opacity="0.15"/>
-          <text x="460" y="32" font-family="Inter, sans-serif" font-size="11" fill="#a09dff" font-weight="700">+340% in 5 years</text>
         </svg>
       </div>
       <div class="hero-card">
@@ -599,8 +605,8 @@
         <div class="module-price">$325</div>
         <div class="module-discount">35% OFF — LIMITED TIME</div>
         <div class="module-buttons">
-          <button class="btn-enroll">Enroll Now</button>
-          <button class="btn-learn">Info</button>
+          <a href="https://idcentral.thinkific.com/courses/take/foundations-of-clinical-research/lessons/71442962-welcome-video" target="_blank" class="btn-enroll">Enroll Now</a>
+          <a href="https://idcentral.thinkific.com/manage/courses/3309935/landing_page" target="_blank" class="btn-learn">Info</a>
         </div>
       </div>
       <!-- Module 2 -->
