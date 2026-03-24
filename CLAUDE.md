@@ -5,7 +5,7 @@
 # Owner: Travis Jordan
 
 ## GitHub Repo
-https://github.com/tbjordan23/resarch
+https://github.com/tbjordan23/research
 
 ## Stack
 - Vite + React
