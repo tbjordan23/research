@@ -1,4 +1,4 @@
-# Project Name: Clinical Research Courses
+# Project Name: Clinical Edge
 
 # Description: Website that hosts and promotes clinical research courses for students and new medical professionals.
 

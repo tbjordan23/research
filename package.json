@@ -1,5 +1,5 @@
 {
-  "name": "clinical-edx",
+  "name": "clinical-edge",
   "version": "1.0.0",
   "scripts": {
     "start": "serve . -p $PORT"
